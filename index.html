@@ -125,8 +125,6 @@ nav {
 }
 .hero-name .yellow { color: var(--yellow); }
 
-/* Hero pills REMOVED – only navbar */
-
 .hero-available {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(245,208,97,.1); border: 1px solid rgba(245,208,97,.25);
@@ -364,7 +362,6 @@ section { padding: 80px 40px; }
   padding: 3px 10px; border-radius: 20px; letter-spacing: .5px;
 }
 
-/* ACHIEVEMENTS */
 #achievements { background: var(--bg); }
 #achievements .creds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 #achievements .cred-card {
@@ -847,7 +844,7 @@ footer {
   </div>
 </footer>
 
-<!-- RESUME MODAL — fixed with GitHub Pages URL -->
+<!-- RESUME MODAL – using raw GitHub URL (works without Pages) -->
 <div id="resumeModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -855,9 +852,9 @@ footer {
       <span class="modal-close" onclick="closeResume()">&times;</span>
     </div>
     <div class="modal-body">
-      <iframe src="https://sidhu34.github.io/Portfolio/P.Siddhartha.Fresher.pdf" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
+      <iframe src="https://raw.githubusercontent.com/SIDHU34/Portfolio/main/P.Siddhartha.Fresher.pdf" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
       <div class="modal-download-row">
-        <a href="https://sidhu34.github.io/Portfolio/P.Siddhartha.Fresher.pdf" download class="btn-yellow" style="padding: 12px 36px; font-size: 1rem;">⬇ Download PDF</a>
+        <a href="https://raw.githubusercontent.com/SIDHU34/Portfolio/main/P.Siddhartha.Fresher.pdf" download class="btn-yellow" style="padding: 12px 36px; font-size: 1rem;">⬇ Download PDF</a>
       </div>
     </div>
   </div>
