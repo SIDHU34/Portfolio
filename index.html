@@ -100,7 +100,7 @@ nav {
 }
 .hero-left { width: 100%; position: relative; z-index: 2; }
 
-/* photo + name row — SIZE INCREASED TO 220px */
+/* photo + name row */
 .hero-name-row {
   display: flex;
   align-items: center;
@@ -109,8 +109,8 @@ nav {
   margin-bottom: 28px;
 }
 .hero-avatar {
-  width: 240px;       /* updated from 180px to 240px */
-  height: 240px0px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--yellow);
@@ -125,24 +125,7 @@ nav {
 }
 .hero-name .yellow { color: var(--yellow); }
 
-.hero-pills {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin-bottom: 32px;
-}
-.hero-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: transparent; border: 1px solid var(--border2);
-  color: var(--gray); font-size: 0.8rem; font-weight: 500;
-  padding: 7px 16px; border-radius: 30px; text-decoration: none;
-  transition: all .22s;
-}
-.hero-pill:hover {
-  background: var(--yellow); color: #0a0a0a;
-  border-color: var(--yellow); font-weight: 600;
-  transform: translateY(-2px);
-}
-.hero-pill .num { color: var(--yellow); font-weight: 700; font-size: 0.72rem; }
-.hero-pill:hover .num { color: #0a0a0a; }
+/* Hero pills REMOVED – only navbar */
 
 .hero-available {
   display: inline-flex; align-items: center; gap: 8px;
@@ -191,6 +174,15 @@ nav {
   transition: all .2s;
 }
 .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+.btn-resume {
+  background: transparent; color: var(--yellow);
+  font-family: var(--font); font-weight: 600; font-size: 0.9rem;
+  padding: 14px 28px; border-radius: 8px; border: 1px solid var(--yellow);
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all .2s;
+}
+.btn-resume:hover { background: var(--yellow); color: #0a0a0a; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,208,97,.2); }
 
 .hero-stats {
   display: flex; gap: 40px;
@@ -206,11 +198,10 @@ nav {
   display: inline-flex; align-items: center; gap: 16px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
-.community-badge-icon { font-size: 1.8rem; }
+.community-badge-icon { font-size: 2rem; line-height: 1; }
 .community-badge-text strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
 .community-badge-text span { font-size: 0.75rem; color: var(--gray); }
 
-/* sections (unchanged) */
 section { padding: 80px 40px; }
 .sec-label {
   display: inline-flex; align-items: center; gap: 10px;
@@ -250,6 +241,7 @@ section { padding: 80px 40px; }
   text-align: center; box-shadow: 0 12px 40px rgba(245,208,97,.3);
 }
 .about-photo-badge span { display: block; font-size: 0.7rem; font-weight: 500; opacity: .7; margin-top: 2px; }
+
 .about-text-col p {
   color: var(--gray); font-weight: 300; line-height: 1.8;
   margin-bottom: 20px; font-size: 0.97rem;
@@ -299,7 +291,13 @@ section { padding: 80px 40px; }
   font-size: 0.72rem; font-weight: 600; color: var(--yellow);
   letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;
 }
-.exp-company { font-size: 0.8rem; color: var(--gray); margin-bottom: 12px; }
+.exp-company {
+  font-size: 0.8rem; color: var(--gray); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.exp-company .company-icon {
+  display: inline-block; font-size: 1.2rem; line-height: 1; width: 28px; text-align: center;
+}
 .exp-role { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
 .exp-desc { font-size: 0.83rem; color: var(--gray); font-weight: 300; line-height: 1.65; }
 .exp-badge {
@@ -438,22 +436,79 @@ footer {
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 960px) {
-  nav { padding: 0 16px; }
-  .nav-links { display: none; }
-  #home { padding: 80px 20px 50px; }
-  section { padding: 60px 20px; }
-  .hero-name-row { gap: 20px; justify-content: center; text-align: center; flex-direction: column; }
-  .hero-avatar { width: 150px; height: 150px; }  /* scales nicely on mobile */
-  .hero-name { text-align: center; }
-  .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
-  .about-img-col { display: none; }
-  .exp-grid, .proj-grid { grid-template-columns: 1fr; }
-  .creds-grid { grid-template-columns: 1fr; }
-  .frow { grid-template-columns: 1fr; }
-  footer { flex-direction: column; gap: 14px; text-align: center; }
-  #skills { padding: 50px 20px; }
-  .community-badge { width: 100%; justify-content: center; }
+/* ─── RESUME MODAL ─── */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 88%;
+  max-width: 920px;
+  padding: 24px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.8);
+  animation: fadeInUp 0.3s ease;
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform: translateY(30px) scale(0.96); }
+  to { opacity:1; transform: translateY(0) scale(1); }
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.modal-header h2 {
+  color: var(--yellow);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.modal-close {
+  font-size: 2.2rem;
+  color: var(--gray);
+  cursor: pointer;
+  transition: 0.2s;
+  line-height: 1;
+}
+.modal-close:hover {
+  color: var(--white);
+  transform: rotate(90deg);
+}
+.modal-body embed {
+  width: 100%;
+  height: 72vh;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.modal-download-row {
+  text-align: center;
+  margin-top: 18px;
+}
+.modal-download-row .btn-yellow {
+  padding: 12px 36px;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .modal-content { width: 95%; padding: 16px; }
+  .modal-body embed { height: 55vh; }
+  .hero-avatar { width: 150px; height: 150px; }
 }
 </style>
 </head>
@@ -475,14 +530,6 @@ footer {
 
 <section id="home">
   <div class="hero-left">
-    <div class="hero-pills">
-      <a href="#projects" class="hero-pill"><span class="num">01</span> Work</a>
-      <a href="#about" class="hero-pill"><span class="num">02</span> About</a>
-      <a href="#experience" class="hero-pill"><span class="num">03</span> Experience</a>
-      <a href="#credentials" class="hero-pill"><span class="num">04</span> Credentials</a>
-      <a href="#contact" class="hero-pill"><span class="num">05</span> Contact</a>
-    </div>
-
     <div class="hero-available"><span></span> Available for opportunities</div>
 
     <div class="hero-name-row">
@@ -497,18 +544,18 @@ footer {
       <span class="role-tag">Data Analyst</span>
       <span class="role-tag">AI Explorer</span>
       <span class="role-tag">Community Organizer</span>
-      <span class="role-tag">BCA (DS) @ CDU</span>
     </div>
 
     <p class="hero-desc">
-      Turning <strong>raw data into decisions</strong> with Power BI, Excel &amp; Python.
-      Organising <strong>Microsoft AI Innovators Hub</strong> events that connect
-      students with technology across Warangal.
-      Learning in public. Building in public. Growing together.
+      I’m passionate about using <strong>data and AI to turn ideas into meaningful solutions</strong>.<br/>
+      With experience as an <strong>Associate Analyst at Deloitte</strong>, I’ve developed strong analytical and technical skills.<br/>
+      I’ve also contributed to <strong>AI and technology communities through events and initiatives</strong>.<br/>
+      Always curious, always learning, and always looking for opportunities to build and grow.
     </p>
 
     <div class="hero-btns">
       <a href="#projects" class="btn-yellow">View Projects ↓</a>
+      <button onclick="openResume()" class="btn-resume">📄 Resume</button>
       <a href="#contact" class="btn-ghost">Let's Collaborate →</a>
     </div>
 
@@ -538,34 +585,34 @@ footer {
         <div class="about-photo-overlay"></div>
       </div>
       <div class="about-photo-badge">
-        CDU<br/>
-        <span>Final Year · BCA DS</span>
+        BCA<br/>
+        <span>Data Science</span>
       </div>
     </div>
     <div class="about-text-col reveal" style="transition-delay:.15s">
       <h2 class="sec-title">Data enthusiast.<br/>Community builder.</h2>
       <p>
-        I'm <strong>Porandla Siddhartha</strong>, a BCA (Data Science) student at
-        <strong>Chaitanya Deemed to be University</strong>, Warangal — final year, class of 2026.
-        My journey is about learning fast, sharing openly, and building things that matter.
+        I’m <strong>Porandla Siddhartha</strong>, a Data Analytics and AI enthusiast with a background in <strong>Data Science</strong> and experience as an <strong>Associate Analyst at Deloitte</strong>. My journey is focused on continuous learning, building practical solutions, and turning ideas into meaningful outcomes.
       </p>
       <p>
-        On the <strong>tech side</strong>, I work with real datasets to build dashboards in
-        <strong>Power BI</strong> and <strong>Excel</strong>, write Python for data analysis,
-        and explore AI applications that solve practical problems.
-        I document everything in public — mistakes, wins, and lessons.
+        On the <strong>technical side</strong>, I work with <strong>Power BI, Excel, SQL, and Python</strong> for data analysis, visualization, and problem-solving. I’m also exploring AI applications and building projects that address real-world challenges.
       </p>
       <p>
-        On the <strong>community side</strong>, I serve as <strong>Organizer at Microsoft AI Innovators Hub</strong>,
-        VP at the Tech Club, and Head of Events at E-Cell.
-        <strong>Organising events is how I shape a tech community</strong> — bringing students
-        face-to-face with opportunities and mentors. Always ready to
-        <strong>volunteer and organise</strong> tech meetups, AI events, and community initiatives.
+        On the <strong>community side</strong>, I’ve worked as an <strong>Organizer at Microsoft AI Innovators Hub</strong>, contributing to AI and technology events that connect students with learning opportunities, industry professionals, and the wider tech community.
       </p>
       <div class="about-items">
-        <div class="about-item"><div class="about-item-icon">📊</div><div><h4>Data &amp; Analytics</h4><p>Dashboards, insights &amp; storytelling with Power BI, Excel &amp; Python</p></div></div>
-        <div class="about-item"><div class="about-item-icon">🎙️</div><div><h4>Event Organising</h4><p>Planning AI workshops, tech meetups &amp; community events in Warangal</p></div></div>
-        <div class="about-item"><div class="about-item-icon">🤝</div><div><h4>Open to Collaborate</h4><p>Volunteering, community building, AI &amp; data project collaboration</p></div></div>
+        <div class="about-item">
+          <div class="about-item-icon">📊</div>
+          <div><h4>Data &amp; Analytics</h4><p>Dashboards, insights &amp; storytelling with Power BI, Excel &amp; Python</p></div>
+        </div>
+        <div class="about-item">
+          <div class="about-item-icon">🎙️</div>
+          <div><h4>Event Organising</h4><p>Planning AI workshops, tech meetups &amp; community events in Hyderabad</p></div>
+        </div>
+        <div class="about-item">
+          <div class="about-item-icon">🤝</div>
+          <div><h4>Open to Collaborate</h4><p>Volunteering, community building, AI &amp; data project collaboration</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -582,7 +629,6 @@ footer {
     <span class="skill-pill">SQL</span>
     <span class="skill-pill">Dashboard Design</span>
     <span class="skill-pill">Google AI · Gemini</span>
-    <span class="skill-pill">Cybersecurity</span>
     <span class="skill-pill">HTML / CSS</span>
     <span class="skill-pill">Git &amp; GitHub</span>
     <span class="skill-pill">Event Management</span>
@@ -597,11 +643,52 @@ footer {
   <h2 class="sec-title">Where I've worked</h2>
   <p class="sec-sub">Building real experience through leadership, community and hands-on data roles.</p>
   <div class="exp-grid reveal">
-    <div class="exp-card"><div class="exp-period">Jan 2026 – Present</div><div class="exp-company">Microsoft AI Innovators Hub</div><div class="exp-role">Organizer</div><div class="exp-desc">Leading the Microsoft AI Innovators Hub in Warangal — planning AI-focused events, workshops and community initiatives that connect students with technology and mentors.</div><div class="exp-badge">★ Current Role</div></div>
-    <div class="exp-card"><div class="exp-period">Oct 2025 – Jan 2026</div><div class="exp-company">Microsoft AI Innovators Hub</div><div class="exp-role">Co-Organizer</div><div class="exp-desc">Co-led event planning, speaker coordination, and community outreach for the AI Innovators Hub alongside the core organizing team.</div></div>
-    <div class="exp-card"><div class="exp-period">Apr 2025 – Oct 2025</div><div class="exp-company">Microsoft AI Innovators Hub</div><div class="exp-role">Volunteer</div><div class="exp-desc">Started the community journey as a volunteer — supporting events, assisting logistics, and helping build the foundation of the hub from the ground up.</div></div>
-    <div class="exp-card"><div class="exp-period">Jun 2025 – Aug 2025</div><div class="exp-company">UptoSkills</div><div class="exp-role">Team Leader</div><div class="exp-desc">Led a team of analysts, coordinated tasks and ensured timely delivery of data projects and reports during the internship program.</div></div>
-    <div class="exp-card"><div class="exp-period">May 2025 – Jun 2025</div><div class="exp-company">UptoSkills</div><div class="exp-role">Data Analyst</div><div class="exp-desc">Analysed datasets, built visualisations and presented actionable insights as part of the data analyst internship role at UptoSkills.</div></div>
+    <div class="exp-card">
+      <div class="exp-period">Jun 2026 – Aug 2026</div>
+      <div class="exp-company">
+        <span class="company-icon">D</span> Deloitte
+      </div>
+      <div class="exp-role">Associate Analyst</div>
+      <div class="exp-desc">Contributed to analytical and business tasks, collaborated with teams to deliver quality outputs, and gained hands-on experience in data-driven problem solving.</div>
+      <div class="exp-badge">★ Internship</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Jan 2026 – Present</div>
+      <div class="exp-company">
+        <span class="company-icon">M</span> Microsoft AI Innovators Hub
+      </div>
+      <div class="exp-role">Organizer</div>
+      <div class="exp-desc">Leading the Microsoft AI Innovators Hub in Hyderabad — planning AI-focused events, workshops and community initiatives that connect students with technology and mentors.</div>
+      <div class="exp-badge">★ Current Role</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Oct 2025 – Jan 2026</div>
+      <div class="exp-company">
+        <span class="company-icon">M</span> Microsoft AI Innovators Hub
+      </div>
+      <div class="exp-role">Co-Organizer</div>
+      <div class="exp-desc">Co-led event planning, speaker coordination, and community outreach for the AI Innovators Hub alongside the core organizing team.</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Apr 2025 – Oct 2025</div>
+      <div class="exp-company">
+        <span class="company-icon">M</span> Microsoft AI Innovators Hub
+      </div>
+      <div class="exp-role">Volunteer</div>
+      <div class="exp-desc">Started the community journey as a volunteer — supporting events, assisting logistics, and helping build the foundation of the hub from the ground up.</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">Jun 2025 – Aug 2025</div>
+      <div class="exp-company">UptoSkills</div>
+      <div class="exp-role">Team Leader</div>
+      <div class="exp-desc">Led a team of analysts, coordinated tasks and ensured timely delivery of data projects and reports during the internship program.</div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-period">May 2025 – Jun 2025</div>
+      <div class="exp-company">UptoSkills</div>
+      <div class="exp-role">Data Analyst</div>
+      <div class="exp-desc">Analysed datasets, built visualisations and presented actionable insights as part of the data analyst internship role at UptoSkills.</div>
+    </div>
   </div>
 </section>
 
@@ -641,7 +728,7 @@ footer {
         <div class="ci"><div class="ci-ico">👤</div><div><div class="ci-lbl">Name</div><div class="ci-val">Porandla Siddhartha</div></div></div>
         <div class="ci"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val">porandlasiddhartha34@gmail.com</div></div></div>
         <div class="ci"><div class="ci-ico">📱</div><div><div class="ci-lbl">Mobile</div><div class="ci-val">+91 6303842879</div></div></div>
-        <div class="ci"><div class="ci-ico">🔗</div><div><div class="ci-lbl">LinkedIn</div><div class="ci-val">porandlasiddhartha-data-analyst</div></div></div>
+        <div class="ci"><div class="ci-ico">🔗</div><div><div class="ci-lbl">LinkedIn</div><div class="ci-val">porandla-siddhartha-data-analyst</div></div></div>
       </div>
       <div class="collab-box"><h4>Contact me for</h4><div class="collab-tags"><span class="ctag">📊 Dashboard Projects</span><span class="ctag">📗 Excel Analytics</span><span class="ctag">💡 Power BI</span><span class="ctag">🤖 AI Collaboration</span><span class="ctag">🎙️ Tech Meetups</span><span class="ctag">📅 Event Organising</span><span class="ctag">🤝 Volunteering</span><span class="ctag">🌐 Tech Events</span></div></div>
     </div>
@@ -659,13 +746,29 @@ footer {
 
 <footer>
   <div class="f-logo">PS.</div>
-  <div class="f-copy">© 2026 Porandla Siddhartha · Hyderabad, Telangana, India</div>
+  <div class="f-copy">© 2026 Porandla Siddhartha · Hyderabad, India</div>
   <div class="f-links">
-    <a href="https://www.linkedin.com/in/porandlasiddhartha-data-analyst" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/porandla-siddhartha-data-analyst?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank">LinkedIn</a>
     <a href="https://github.com/SIDHU34" target="_blank">GitHub</a>
     <a href="mailto:porandlasiddhartha34@gmail.com">Email</a>
   </div>
 </footer>
+
+<!-- RESUME MODAL — now using the local PDF file from GitHub -->
+<div id="resumeModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>📄 My Resume</h2>
+      <span class="modal-close" onclick="closeResume()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <embed src="P.Siddhartha.Fresher.pdf" type="application/pdf" width="100%" height="100%" style="border-radius: 8px;" />
+      <div class="modal-download-row">
+        <a href="P.Siddhartha.Fresher.pdf" download class="btn-yellow" style="padding: 12px 36px; font-size: 1rem;">⬇ Download PDF</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 const dot = document.getElementById('cur-dot');
@@ -732,6 +835,21 @@ function sendEmail() {
     btn.disabled = false; txt.textContent = 'Send Message ✉️';
     console.error(err);
   });
+}
+
+function openResume() {
+  document.getElementById('resumeModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeResume() {
+  document.getElementById('resumeModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+window.onclick = function(event) {
+  const modal = document.getElementById('resumeModal');
+  if (event.target == modal) {
+    closeResume();
+  }
 }
 </script>
 </body>
