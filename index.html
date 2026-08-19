@@ -125,8 +125,7 @@ nav {
 }
 .hero-name .yellow { color: var(--yellow); }
 
-/* Hero pills REMOVED – only navbar */
-
+/* Hero pills – only navbar */
 .hero-available {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(245,208,97,.1); border: 1px solid rgba(245,208,97,.25);
@@ -364,6 +363,72 @@ section { padding: 80px 40px; }
   padding: 3px 10px; border-radius: 20px; letter-spacing: .5px;
 }
 
+/* ─── NEW ACHIEVEMENTS SECTION ─── */
+#achievements { background: var(--bg); }
+#achievements .creds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+#achievements .cred-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all .2s;
+}
+#achievements .cred-card:hover {
+  border-color: rgba(245,208,97,.25);
+  transform: translateY(-3px);
+}
+#achievements .cred-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(245,208,97,.08);
+  border: 1px solid rgba(245,208,97,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+#achievements .cred-org {
+  font-size: 0.75rem;
+  color: var(--yellow);
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+#achievements .cred-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+#achievements .cred-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(245,208,97,.07);
+  border: 1px solid rgba(245,208,97,.18);
+  color: var(--yellow);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+}
+#achievements .cred-desc {
+  color: var(--gray);
+  font-size: 0.8rem;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+#achievements .cred-desc strong { color: var(--off-white); font-weight: 500; }
+
+/* contact */
 #contact { background: var(--bg); }
 .contact-wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; }
 .contact-left h3 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
@@ -489,7 +554,7 @@ footer {
   color: var(--white);
   transform: rotate(90deg);
 }
-.modal-body embed {
+.modal-body iframe {
   width: 100%;
   height: 72vh;
   border-radius: 10px;
@@ -507,8 +572,9 @@ footer {
 
 @media (max-width: 600px) {
   .modal-content { width: 95%; padding: 16px; }
-  .modal-body embed { height: 55vh; }
+  .modal-body iframe { height: 55vh; }
   .hero-avatar { width: 150px; height: 150px; }
+  #achievements .creds-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -716,6 +782,33 @@ footer {
   </div>
 </section>
 
+<!-- ─── NEW ACHIEVEMENTS SECTION ─── -->
+<section id="achievements">
+  <div class="sec-label">Achievements</div>
+  <h2 class="sec-title">Hackathon Wins &amp; Recognition</h2>
+  <p class="sec-sub">Competitive achievements that showcase my skills in AI, Android development, and teamwork.</p>
+  <div class="creds-grid reveal">
+    <div class="cred-card">
+      <div class="cred-logo">🏆</div>
+      <div class="cred-info">
+        <div class="cred-org">Agentathon 2025</div>
+        <div class="cred-name">Consolation Prize — Team Lead</div>
+        <div class="cred-done">🏅 GDG Hyderabad · 36‑Hour Hackathon</div>
+        <div class="cred-desc">Led a team to build <strong>DataSage Autopilot</strong>, an Agentic AI project that reasons over data and generates insights. Secured a prize among <strong>2,100+ participants and 700+ teams</strong> at Malla Reddy University, Hyderabad. The hackathon achieved a <strong>Guinness World Record</strong>.</div>
+      </div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-logo">🥇</div>
+      <div class="cred-info">
+        <div class="cred-org">iQOO Tech Quest 2026</div>
+        <div class="cred-name">1st Place — Android Development</div>
+        <div class="cred-done">🏅 Hyderabad · Innovation Challenge</div>
+        <div class="cred-desc">Developed an innovative <strong>Android application featuring Director Mode</strong> that demonstrated creativity, technical implementation, and problem‑solving skills. Secured <strong>1st place</strong> in the competition held in Hyderabad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="sec-label">Contact</div>
   <h2 class="sec-title">Let's build together</h2>
@@ -754,7 +847,7 @@ footer {
   </div>
 </footer>
 
-<!-- RESUME MODAL — now using the local PDF file from GitHub -->
+<!-- RESUME MODAL – using raw GitHub URL for reliability -->
 <div id="resumeModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -762,9 +855,9 @@ footer {
       <span class="modal-close" onclick="closeResume()">&times;</span>
     </div>
     <div class="modal-body">
-      <embed src="P.Siddhartha.Fresher.pdf" type="application/pdf" width="100%" height="100%" style="border-radius: 8px;" />
+      <iframe src="https://raw.githubusercontent.com/SIDHU34/Portfolio/main/P.Siddhartha.Fresher.pdf" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
       <div class="modal-download-row">
-        <a href="P.Siddhartha.Fresher.pdf" download class="btn-yellow" style="padding: 12px 36px; font-size: 1rem;">⬇ Download PDF</a>
+        <a href="https://raw.githubusercontent.com/SIDHU34/Portfolio/main/P.Siddhartha.Fresher.pdf" download class="btn-yellow" style="padding: 12px 36px; font-size: 1rem;">⬇ Download PDF</a>
       </div>
     </div>
   </div>
