@@ -125,7 +125,8 @@ nav {
 }
 .hero-name .yellow { color: var(--yellow); }
 
-/* Hero pills – only navbar */
+/* Hero pills REMOVED – only navbar */
+
 .hero-available {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(245,208,97,.1); border: 1px solid rgba(245,208,97,.25);
@@ -363,7 +364,7 @@ section { padding: 80px 40px; }
   padding: 3px 10px; border-radius: 20px; letter-spacing: .5px;
 }
 
-/* ─── NEW ACHIEVEMENTS SECTION ─── */
+/* ACHIEVEMENTS */
 #achievements { background: var(--bg); }
 #achievements .creds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 #achievements .cred-card {
@@ -428,7 +429,6 @@ section { padding: 80px 40px; }
 }
 #achievements .cred-desc strong { color: var(--off-white); font-weight: 500; }
 
-/* contact */
 #contact { background: var(--bg); }
 .contact-wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; }
 .contact-left h3 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
@@ -782,7 +782,7 @@ footer {
   </div>
 </section>
 
-<!-- ─── NEW ACHIEVEMENTS SECTION ─── -->
+<!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="sec-label">Achievements</div>
   <h2 class="sec-title">Hackathon Wins &amp; Recognition</h2>
@@ -847,7 +847,7 @@ footer {
   </div>
 </footer>
 
-<!-- RESUME MODAL — using GitHub Pages URL for inline preview -->
+<!-- RESUME MODAL — fixed with GitHub Pages URL -->
 <div id="resumeModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -855,9 +855,7 @@ footer {
       <span class="modal-close" onclick="closeResume()">&times;</span>
     </div>
     <div class="modal-body">
-      <!-- PREVIEW (using GitHub Pages URL) -->
       <iframe src="https://sidhu34.github.io/Portfolio/P.Siddhartha.Fresher.pdf" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
-      <!-- DOWNLOAD BUTTON -->
       <div class="modal-download-row">
         <a href="https://sidhu34.github.io/Portfolio/P.Siddhartha.Fresher.pdf" download class="btn-yellow" style="padding: 12px 36px; font-size: 1rem;">⬇ Download PDF</a>
       </div>
